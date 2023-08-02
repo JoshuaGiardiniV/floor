@@ -41,7 +41,7 @@ void main() {
           Callback? callback,
           String password,
         ]) async {
-          final databaseOptions = sqflite.OpenDatabaseOptions(
+          final databaseOptions = sqflite.SqlCipherOpenDatabaseOptions(
             password: password,
             version: 1,
             onConfigure: (database) async {
