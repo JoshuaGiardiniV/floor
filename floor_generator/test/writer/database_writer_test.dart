@@ -39,8 +39,10 @@ void main() {
           String path,
           List<Migration> migrations, [
           Callback? callback,
+          String password,
         ]) async {
           final databaseOptions = sqflite.OpenDatabaseOptions(
+            password: password,
             version: 1,
             onConfigure: (database) async {
               await database.execute('PRAGMA foreign_keys = ON');
@@ -106,8 +108,10 @@ void main() {
           String path,
           List<Migration> migrations, [
           Callback? callback,
+          String password,
         ]) async {
           final databaseOptions = sqflite.OpenDatabaseOptions(
+            password: password,
             version: 1,
             onConfigure: (database) async {
               await database.execute('PRAGMA foreign_keys = ON');
@@ -169,8 +173,10 @@ void main() {
           String path,
           List<Migration> migrations, [
           Callback? callback,
+          String password,
         ]) async {
           final databaseOptions = sqflite.OpenDatabaseOptions(
+            password: password,
             version: 1,
             onConfigure: (database) async {
               await database.execute('PRAGMA foreign_keys = ON');
