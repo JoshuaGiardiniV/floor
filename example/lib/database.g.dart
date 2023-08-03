@@ -10,20 +10,28 @@ part of 'database.dart';
 class $FloorFlutterDatabase {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$FlutterDatabaseBuilder databaseBuilder(String name) =>
-      _$FlutterDatabaseBuilder(name);
+  static _$FlutterDatabaseBuilder databaseBuilder(
+    String name, [
+    String? password,
+  ]) =>
+      _$FlutterDatabaseBuilder(name, password);
 
   /// Creates a database builder for an in memory database.
   /// Information stored in an in memory database disappears when the process is killed.
   /// Once a database is built, you should keep a reference to it and re-use it.
   static _$FlutterDatabaseBuilder inMemoryDatabaseBuilder() =>
-      _$FlutterDatabaseBuilder(null);
+      _$FlutterDatabaseBuilder(null, null);
 }
 
 class _$FlutterDatabaseBuilder {
-  _$FlutterDatabaseBuilder(this.name);
+  _$FlutterDatabaseBuilder(
+    this.name,
+    this.password,
+  );
 
   final String? name;
+
+  final String? password;
 
   final List<Migration> _migrations = [];
 
@@ -43,12 +51,13 @@ class _$FlutterDatabaseBuilder {
 
   /// Creates the database and initializes it.
   Future<FlutterDatabase> build() async {
-    final path = name != null
+    final String path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name!)
         : ':memory:';
     final database = _$FlutterDatabase();
     database.database = await database.open(
       path,
+      password,
       _migrations,
       _callback,
     );
@@ -65,11 +74,13 @@ class _$FlutterDatabase extends FlutterDatabase {
 
   Future<sqflite.Database> open(
     String path,
+    String? password,
     List<Migration> migrations, [
     Callback? callback,
   ]) async {
-    final databaseOptions = sqflite.OpenDatabaseOptions(
+    final databaseOptions = sqflite.SqlCipherOpenDatabaseOptions(
       version: 1,
+      password: password ?? '123456',
       onConfigure: (database) async {
         await database.execute('PRAGMA foreign_keys = ON');
         await callback?.onConfigure?.call(database);
