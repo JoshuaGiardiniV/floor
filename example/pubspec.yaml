@@ -14,6 +14,7 @@ dependencies:
     path: ../floor/
   flutter:
     sdk: flutter
+  sqflite_sqlcipher: ^2.1.1+1
 
 dev_dependencies:
   analyzer: ^5.0.0
