@@ -7,7 +7,7 @@ import 'package:sqflite_sqlcipher/sqflite.dart';
 // infers factory as nullable without explicit type definition
 final DatabaseFactory sqfliteDatabaseFactory = () {
   if (Platform.isAndroid || Platform.isIOS) {
-    return databaseFactory;
+    return sqfliteDatabaseFactory;
   } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
     sqfliteFfiInit();
     return databaseFactoryFfi;
