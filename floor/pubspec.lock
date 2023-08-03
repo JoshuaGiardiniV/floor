@@ -212,9 +212,11 @@ packages:
   floor_annotation:
     dependency: "direct main"
     description:
-      path: "../floor_annotation"
-      relative: true
-    source: path
+      path: floor_annotation
+      ref: "feature/encryption"
+      resolved-ref: "9e69bbeec576f7031e6507e0e8c49362507c7be4"
+      url: "https://github.com/JoshuaGiardiniV/floor.git"
+    source: git
     version: "1.4.2-sqlcipher"
   floor_generator:
     dependency: "direct dev"

@@ -8,7 +8,7 @@ import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite;
 
 part 'database.g.dart';
 
-@Database(version: 1, entities: [Task])
+@Database(version: 1, entities: [Task], password: '123456')
 @TypeConverters([DateTimeConverter, TaskTypeConverter])
 abstract class FlutterDatabase extends FloorDatabase {
   TaskDao get taskDao;
