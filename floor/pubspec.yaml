@@ -35,10 +35,3 @@ dev_dependencies:
   matcher: ^0.12.10
   mockito: ^5.0.15
   sqflite_common: ^2.4.4
-
-dependency_overrides:
-  sqflite:
-    git:
-      url: https://www.github.com/davidmartos96/sqflite_sqlcipher.git
-      path: sqflite
-      ref: fmdb_override
